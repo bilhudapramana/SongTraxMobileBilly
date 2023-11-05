@@ -15,6 +15,7 @@ import RecipeCard from '../components/RecipeCard';
  * @returns {React.Element} A screen displaying all recipes.
  */
 function Home({ navigation, recipes }) {
+    
     return (
         <SafeAreaView
             style={{

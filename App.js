@@ -11,25 +11,26 @@ import { colors } from "./data/theme";
 const Stack = createStackNavigator();
 
 function App() {
-    const APIKEY = 'a3_demo';
-    const BASE_URL = 'https://comp2140.uqcloud.net/api/';
-    const getAllSamples = async () => {
-        const url = `${BASE_URL}sample/?api_key=${APIKEY}`;
-        const response = await fetch(url);
+    const API_KEY = 'a3_demo';
+    const API_BASE_URL = 'https://comp2140.uqcloud.net/api/';
+
+    const fetchAllSamples = async () => {
+        const requestUrl = `${API_BASE_URL}sample/?api_key=${API_KEY}`;
+        const response = await fetch(requestUrl);
         return response.json();
     };
 
-    const [data, setData] = useState([]);
+    const [dataSong, setDataSong] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Define and initialize isLoading
 
     useEffect(() => {
-        const fetchSamples = async () => {
+        const allSamples = async () => {
             setIsLoading(true); // Start loading
-            const data = await getAllSamples();
-            setData(data);
+            const data = await fetchAllSamples();
+            setDataSong(data);
             setIsLoading(false); // End loading
         };
-        fetchSamples();
+        allSamples();
     }, []);
 
     return (
@@ -43,11 +44,11 @@ function App() {
                 >
                     <Stack.Screen
                         name="Tabs"
-                        children={props => <Tabs {...props} recipes={data}  />} 
+                        children={props => <Tabs {...props} recipes={dataSong}  />} 
                     />
                     <Stack.Screen
                         name="Recipe"
-                        children={props => <Recipe {...props} recipes={data} />}
+                        children={props => <Recipe {...props} recipes={dataSong} />}
                     />
                 </Stack.Navigator>
             </NavigationContainer>

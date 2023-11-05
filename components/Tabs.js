@@ -9,7 +9,7 @@ import PhotoPicker from "../screens/PhotoPicker";
 
 import { colors, sizes } from "../data/theme";
 import icons from "../data/icons";
-
+import ShowMap from "../screens/Map";
 /**
  * TabIcon component
  * 
@@ -98,6 +98,11 @@ function Tabs({ navigation, recipes, setRecipes }) {
             <Tab.Screen
                 name="Home"
                 children={() => <Home navigation={navigation} recipes={recipes} />}
+                options={() => tabOptions(icons.tabmapdarkpurple)}
+            />
+            <Tab.Screen
+                name="ShowMap"
+                children={() => <ShowMap />}
                 options={() => tabOptions(icons.tabmapdarkpurple)}
             />
             <Tab.Screen
